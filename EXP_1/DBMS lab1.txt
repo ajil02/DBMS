@@ -1,0 +1,52 @@
+1.
+create table students(Id number NOT NULL,Name varchar(20),Email varchar(20),Phoneno number,DOB date,Address varchar(20),Height_in_cm float,DeptNo number NOT NULL);
+desc student; 
+
+create table Dept(DeptNo number(5) PRIMARY KEY,DeptName varchar2(20),Location varchar2(20));
+desc Dept;
+
+2.
+alter table students add date_of_joining date;
+
+3.
+alter table students add stipend float not null;
+
+4.
+alter table students modify stipend float check(stipend>0);
+
+5.
+alter table students add primary key(Id);
+
+6.
+alter table Dept modify DeptName varchar2(20) unique;
+
+7.
+alter table students add foreign key (DeptNo) references Dept(DeptNo);
+
+8.
+alter table students drop column date_of_joining;
+alter table students drop column Address;
+
+9.
+alter table Dept modify DeptName varchar(10);
+
+10.
+alter table Dept drop unique(DeptName);
+
+11.
+alter table students rename column Name to SName;
+
+12.
+drop table Dept;
+
+13.
+select 'Ajil20' as Name_Age from dual;
+
+14.
+select sysdate from dual;
+
+15.
+select 15+10-5*2/5 from dual;
+
+16.
+select table_name from user_tables;
