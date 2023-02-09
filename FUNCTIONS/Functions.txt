@@ -1,0 +1,67 @@
+QUESTION 1
+
+create table emp6 (EmpId Varchar2(20) Primary Key,EmpName Varchar2(20),Job Varchar2(20),Manager Varchar2(20),DeptNo Varchar2(20),Sal number(10,3));
+insert into emp6 values('E0001', 'Abey', 'Tester', 'E0004', 'D004',30000);
+insert into emp6 values('E0002','Jesto','Analyst','E0001','D002',650,,25000);
+insert into emp6 values('E0003','Adarsh','Clerk','E0004','D004',15000);
+insert into emp6 values('E0004','Kevin','Admin','E0005','D002',20000);  
+insert into emp6 values('E0005','Bony','Manager',NULL,'D001',50000);
+insert into emp6 values('E0006','Manu','Supplier','E0001','D003',5000);
+
+create or replace function func(id varchar2)
+return varchar2
+as
+	manager_name varchar2(20);
+begin
+	select empname into manager_name from emp6 where empid=(select manager from emp6 where empid=id) ;
+return(manager_name);
+end;
+/
+select func('E0003') from dual;
+
+
+QUESTION 2
+
+i)
+
+create table Product(product_id integer PRIMARY KEY,product_name varchar2(255),grade integer);
+insert into Product values(1, 'wrench', 3);
+insert into Product values(2, 'tea', 3);
+insert into Product values(3, 'coffee', 1);
+
+create table Sales (product_id integer,sales number,sales_date date,sales_day varchar2(10),FOREIGN KEY (product_id) REFERENCES Product(product_id));
+insert into Sales values(1, 100, SYSDATE, 'MONDAY');
+insert into Sales values(2, 750, SYSDATE, 'TUESDAY');
+insert into Sales values(3, 240, SYSDATE, 'MONDAY');
+
+CREATE OR REPLACE FUNCTION fun(pid INTEGER) RETURN VARCHAR2 AS pname VARCHAR2(255);
+  pgrade INTEGER;
+BEGIN
+  SELECT product_name, grade INTO pname, pgrade FROM Product WHERE product_id = pid;
+  RETURN pname || ' - Grade ' || pgrade;
+END;
+/
+select fun(1)from dual;
+
+ii)
+
+create or replace function fun2 (target number, s number) return VARCHAR2 IS grade VARCHAR2(2);
+begin
+  IF s>target THEN
+     grade:= 'A';
+  ELSE
+     grade:= 'B';
+  END IF;
+return grade;
+end;
+/
+
+declare
+   total INTEGER;
+begin
+   select sum(sales) into total from sales;
+   DBMS_OUTPUT.PUT_LINE('Grade: ' ||fun2(100,total));
+end;
+/
+
+select fun2(100,sum(sales)) from sales;
