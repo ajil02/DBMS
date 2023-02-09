@@ -1,0 +1,225 @@
+EXPERIMENT NO:6
+
+1)
+declare
+    basic number;
+    da number;
+    hra number;
+    pf number;
+    gross_sal number;
+begin
+    dbms_output.put_line('Enter basic:');
+    basic:='&basic';
+    da:=basic*(40/100);
+    hra:=basic*(20/100);
+    pf:=basic*(12/100);
+    gross_sal:=basic+hra+da-pf;
+  	
+    dbms_output.put_line('pf is '||pf);
+    dbms_output.put_line('gross salary is '||gross_sal);
+end;
+
+
+2)
+declare
+    num int :=0;
+    i int;
+    s int :=0;
+    r int;
+
+begin
+    num:=&num;
+    while num > 0 loop
+        r:= MOD(num, 10);
+        s := s + r;
+        num:=floor(num/10);
+    end loop;
+
+    dbms_output.put_line('The sum of digits is:'||s );
+
+end;
+
+
+3)
+declare
+    sal number;
+
+begin
+    sal:=&sal;
+    if sal<3000 then
+        sal:=4000;
+    end if;
+    dbms_output.put_line(' The salary is '||sal );
+end;
+
+
+4)
+declare
+    num number;
+    d number;
+    r number;
+    n number;
+
+begin
+    num:=&num;
+    n:=num;
+    d:=0;
+    while num > 0 loop
+        r:= MOD(num, 10);
+        d := d + power(r,3);
+        num:=floor(num/10);
+    end loop;
+    if (n=d) then
+        dbms_output.put_line(' It is Armstrong number'  );
+    else
+        dbms_output.put_line(' It is not Armstrong number'); 
+    end if;
+end;
+
+
+5)
+declare
+    str  VARCHAR(20) := '&str';
+    len  NUMBER;
+    str1 VARCHAR(20);
+begin
+    len := Length(str);
+  
+    FOR i IN REVERSE 1.. len LOOP               
+        str1 := str1
+                || Substr(str, i, 1);
+    END LOOP;
+
+    dbms_output.Put_line('Reverse of string is '|| str1);
+end;
+
+
+6)
+declare
+   n number;
+   m number;
+   temp number:=0;
+   rem number;
+begin
+   n :=&n;
+   m :=n;
+   while n>0
+   loop
+      rem := mod(n,10);
+      temp := (temp*10)+rem;
+      n := trunc(n/10);
+   end loop;
+   if m = temp
+   then
+      dbms_output.put_line('Palindrome');
+   else
+      dbms_output.put_line('Not Palindrome');
+   end if;
+end;
+
+
+create or replace function f_reverse(str in varchar) return varchar is s varchar(5);
+l number;
+begin
+		l:=length(str);
+		for i in reverse 1..l
+		loop
+			s:=s||substr(str,i,1);
+		end loop;
+	return s;
+end;
+declare
+	str varchar(50);
+	s varchar(50);
+begin
+	str:='&str';
+	s:=f_reverse(str);
+	dbms_output.put_line('The reverse string is '||s);
+end;
+
+
+7)
+DECLARE
+   n number;
+   m number;
+   temp number:=0;
+   rem number;
+BEGIN
+   n :=&n;
+   m :=n;
+   while n>0
+   loop
+      rem := mod(n,10);
+      temp := (temp*10)+rem;
+      n := trunc(n/10);
+   end loop;
+   if m = temp
+   then
+      dbms_output.put_line('Palindrome');
+   else
+      dbms_output.put_line('Not Palindrome');
+   end if;
+end;
+
+
+
+8)
+create table EvenNo ( even number);
+
+DECLARE
+   i number;
+   m number;
+BEGIN
+   for i in  10..50
+loop
+
+if mod(i,2)=0 then
+insert into EvenNo values(i);
+end if;
+end loop;
+end;
+/
+select * from evenno;
+ 
+
+9)
+create table stud1 (roll number,name varchar(15),m1 number,m2 number,m3 number,tot_marks number);
+
+insert into stud1 values(1,'Arjun',10,20,30,60);
+insert into stud1 values(2,'Shiva,',20,20,50,90);
+insert into stud1 values(3,'Jobin',20,20,30,70);
+insert into stud1 values(4,'John',15,25,35,75);
+
+create table gradea (roll number,name varchar(15));
+create table gradeb (roll number,name varchar(15));
+create table gradec (roll number,name varchar(15));
+
+
+DECLARE
+   n number;
+   nam varchar(15);
+   i number;
+   
+BEGIN
+for i in  1..4
+loop
+   select tot_marks,name into n,nam from stud1 where roll=i ;
+   if n>75 then
+      insert into gradea values(n,nam);
+ELSIF n>60 then
+      insert into gradeb values(n,nam);
+else
+      insert into gradec values(n,nam);
+   end if;
+   end loop;
+end;
+/
+
+
+select * from gradea;
+select * from gradeb;
+select * from gradec;
+ 
+truncate table gradea;
+truncate table gradeb;
+truncate table gradec;
