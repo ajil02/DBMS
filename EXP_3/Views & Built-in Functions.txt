@@ -1,0 +1,51 @@
+EXPERIMENT NO:3
+
+a)
+CREATE TABLE employee(empid varchar(20),empname varchar(20),job varchar(10), manager varchar(20));
+
+INSERT INTO employee values('E0001','Abey','Tester','E0004');
+
+INSERT INTO employee values('E0002','Jesto','Analyst','E0001');
+
+INSERT INTO employee values('E0003','Adarsh','Clerk','E0004');
+
+INSERT INTO employee values('E0004','Kevin','Admin','E0005');
+
+INSERT INTO employee values('E0005','Bony','Manager',NULL);
+
+INSERT INTO employee values('E0006','Manu','Supplier','E0001');
+
+
+CREATE VIEW CUST_VW AS select empid,empname,job,manager from employee;
+
+b)
+UPDATE CUST_VW SET job='Snr Clerk' WHERE job='Clerk';
+
+c)
+DELETE FROM CUST_VW WHERE empname='Kevin';
+
+d)
+DROP VIEW CUST_VW;
+
+
+e)
+  a)SELECT POWER(16,5) FROM DUAL;
+	
+  b)SELECT LENGTH('application')FROM DUAL;
+	
+  c)SELECT last_day(sysdate)FROM DUAL;
+
+  d)SELECT TO_CHAR(65432,'$99999')FROM DUAL;
+
+  e)SELECT SYSTIMESTAMP FROM DUAL;
+
+  f)SELECT EXTRACT(year from dob)AS year_of_hiring FROM STUDENT;
+
+  g)SELECT TRUNC(months_between(sysdate,dob))AS months_alive FROM student;
+
+  h)SELECT count(distinct deptno)from student;
+
+  i)SELECT to_char(dob,'DAY,DD,MONTH,YYYY')FROM student;
+
+
+
