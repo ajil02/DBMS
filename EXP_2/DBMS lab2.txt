@@ -1,0 +1,51 @@
+1)
+create table student(Id number,Name varchar(20),Email varchar(30),Phoneno number,DOB date,Address varchar(30),Height_in_cm float,DeptNo number);
+desc student;
+
+insert into student values(01,'Abey','u2007002@rajagiri.edu.in',9645765552,'15/DEC/2001','RSET-AID',160,04);
+insert into student values(02,'Jesto','u2007068@rajagiri.edu.in',9446907495,'24/APR/2001','RSET-IT',165,02);
+insert into student values(03,'Adarsh','u2007003@rajagiri.edu.in',9446168018,'10/JAN/2003','RSET-AID',180,04);
+insert into student values(04,'Kevin','u2007004@rajagiri.edu.in',9048779636,'10/OCT/2002','RSET-IT',175,02);
+insert into student values(05,'Bony','u2007005@rajagiri.edu.in',8848647102,'11/APR/2001','RSET-CSE',168,01);
+insert into student values(06,'Manu','u2007006@rajagiri.edu.in',9447026251,'19/JUN/2003','RSET-CSBS',190,02);
+select * from student;
+
+2)
+create table Dept(DeptNo number(5) PRIMARY KEY,DeptName varchar2(20),Location varchar2(20));
+desc Dept;
+
+insert into Dept values(01,'DIT','A block');
+insert into Dept values(02,'DCS','B block');
+insert into Dept values(03,'DEC','C block');
+insert into Dept values(04,'DEE','D block');
+select * from Dept;
+
+3)
+create table client(Cno varchar2(6),Name varchar2(20),City varchar2(15),Pincode number(8),State varchar2(15),Baldue number(10,2));
+desc client
+
+4)
+insert into client values('C001','Riya','Kochi',680324,'Kerala',14000);
+insert into client values('C002','Susan','Kochi',680324,'Kerala',0);
+insert into client values('C003','Anitha','Chennai',680345,'TamilNadu',5000);
+insert into client values('C004','Kumar','Pune',680223,'Maharastra',500);
+insert into client values('C005','Anu','Nilampur',680321,'Kerala',7600);
+insert into client values('C006','Vishnu','Bombay',682111,'Maharastra',2055);
+select * from client;
+
+5)
+select * from student;
+select * from Dept;.
+select * from client;
+
+6)
+insert into student values(07,'Arjun','u2007007@rajagiri.edu.in',8947026251,'12/NOV/2003','RSET-CSBS',177,02);
+
+7)
+select * from client where rownum<=4;
+
+8)
+select Name,Email,Phoneno from student;
+
+9)
+select Name from student where Name='A' and Name='K';
