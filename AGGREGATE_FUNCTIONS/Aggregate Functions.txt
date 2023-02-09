@@ -1,0 +1,75 @@
+1)
+select * from client;
+
+#Table Employee
+create table emp5 (EmpId Varchar2(20) Primary Key,EmpName Varchar2(20),Job Varchar2(20),Manager Varchar2(20),DeptNo Varchar2(20),Comm Number(5),HireDate Date,Sal  number(10,3));
+insert into emp5 values('E0001', 'Abey', 'Tester', 'E0004', 'D004' , 500,'15/dec/12', 30000);
+insert into emp5 values('E0002','Jesto','Analyst','E0001','D002',650 ,'24/apr/11',25000);
+insert into emp5 values('E0003','Adarsh','Clerk','E0004','D004',500,'10/jan/13', 15000);
+insert into emp5 values('E0004','Kevin','Admin','E0005','D002',1750,'10/oct/13' ,20000);  
+insert into emp5 values('E0005','Bony','Manager',NULL,'D001',1000,'11/apr/11', 50000);
+insert into emp5 values('E0006','Manu','Supplier','E0001','D003',450 ,'19/jun/13',5000);
+
+a)
+select sum(baldue)from client;
+
+b)
+select count(*) from emp5;
+
+c)
+select min(baldue),max(baldue) from client;
+
+d)
+select avg(sal) from emp5;
+
+e)
+select name from client order by name asc; 
+
+f)
+select deptno,max(sal)from emp5 group by deptno;
+
+g)
+select deptno,min(sal)from emp5 group by deptno having deptno not in('D001');
+
+
+2)
+
+create table dept1(DeptNo varchar(5) PRIMARY KEY,DeptName varchar2(20),Location varchar2(20));
+desc dept1;
+
+insert into dept1 values('D001','DIT','A block');
+insert into dept1 values('D002','DCS','B block');
+insert into dept1 values('D003','DEC','C block');
+insert into dept1 values('D004','DEE','D block');
+insert into dept1 values('D005','DEE','D block');
+select * from dept1;
+
+a)
+select deptno from emp5 union select deptno from dept1;
+
+b)
+select deptno from emp5 minus select deptno from dept1;
+
+c)
+select * from emp5 where sal>(select sal from emp5 where empname='Adarsh');
+
+d)
+select * from emp5 where sal<(select max(sal) from emp5 where deptno='D004');
+
+e)
+select empname,sal from emp5 where sal>(select min(sal) from emp5) and job like 'A%';
+
+f)
+select * from emp5 join dept1 on emp5.deptno=dept1.deptno;
+
+g)
+select * from emp5 join dept1 on emp5.deptno!=dept1.deptno;
+
+h)
+select empname,job,manager from emp5 left join dept1 on emp5.deptno=dept1.deptno;
+
+i)
+select empname,job,manager from  dept1 right join emp5 on emp5.deptno=dept1.deptno;
+
+j)
+select empname,job,manager from  dept1 full join emp5 on emp5.deptno=dept1.deptno;
